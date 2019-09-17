@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2aa9c8b0c2154ca0a0ce77f1db2ca0f8" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_DonViTinh" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_HinhThucThanhToan" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_DonHang" Width="1.5" PointX="6.75" PointY="7.625" />
+        <AssociationConnector Association="hoangdau_foodjpModel.FK_JF_DonHang_JF_HinhThucThanhToan" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_Slider" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_SanPham_DonHang" Width="1.5" PointX="9" PointY="5" />
+        <AssociationConnector Association="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_DonHang1" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_LoaiSanPham" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_SanPham" Width="1.5" PointX="9" PointY="8.875" />
+        <AssociationConnector Association="hoangdau_foodjpModel.FK_JF_SanPham_JF_DonViTinh" />
+        <AssociationConnector Association="hoangdau_foodjpModel.FK_JF_SanPham_JF_LoaiSanPham" />
+        <AssociationConnector Association="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_SanPham" />
+        <EntityTypeShape EntityType="hoangdau_foodjpModel.JF_ThongTinLienHe" Width="1.5" PointX="5.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

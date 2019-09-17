@@ -1,0 +1,148 @@
+﻿@using Core_MVC.Models
+@model IEnumerable<Core_MVC.Models.JF_SanPham>
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+@{int count = 1; }
+<section class="ftco-section">
+   @{Html.RenderAction("Banner", "System", new { title = "Sản phẩm" });}
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <h3 class="heading">Sản phẩm / @ViewBag.LOAISANPHAM</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="5000">
+
+                            <!--Controls-->
+                            @*<div class="controls-top">
+                                    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                                    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                                </div>*@
+                            <!--/.Controls-->
+                            <!--Indicators-->
+                            @*<ol class="carousel-indicators">
+                                <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                                <li data-target="#multi-item-example" data-slide-to="1"></li>
+                                <li data-target="#multi-item-example" data-slide-to="2"></li>
+
+                            </ol>*@
+                            <!--/.Indicators-->
+                            <!--Slides-->
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        @if (TempData["spnoibat"] != null)
+                                        {
+                                            List<JF_SanPham> lData = (List<JF_SanPham>)TempData["spnoibat"];
+                                            for (int i = 0; i < lData.Count; i++)
+                                            {
+
+                                                <div class="col-md-3 clearfix d-none d-md-block">
+                                                    <div class="card mb-2">
+                                                        <img class="card-img-top" src="@Url.Content(ViewBag.URLIMAGE + lData[i].hinhdaidien)"
+                                                             alt="featured product">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">@lData[i].ten</h4>
+                                                            @*<p class="card-text">
+                                                                    Some quick example text to build on the card title and make up the bulk of the
+                                                                    card's content.
+                                                                </p>
+                                                                <a class="btn btn-primary">Button</a>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                if ((i + 1) % 4 == 0 && lData.Count != 4)
+                                                {
+                                                    @Html.Raw("</div></div><div class='carousel-item'><div class='row'>");
+                                                    count++;
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <ol class="carousel-indicators">
+                                @if (TempData["spnoibat"] != null)
+                                {
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                                        }
+                                        else
+                                        {
+                                            <li data-target="#multi-item-example" data-slide-to="@i"></li>
+                                        }
+                                    }
+                                }
+                            </ol>
+                            <!--/.Slides-->
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>---</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    int i = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td align="center">@i</td>
+                                            <td><span class="sanpham_@item.id">@item.ten</span></td>
+                                            <td align="center">@item.JF_DonViTinh.ten</td>
+                                            <td align="right">@string.Format("{0:N0}", item.giatien)</td>
+                                            <td><input type="number" value="1" class="form-control text-right quantity" id="sp_@item.id"/></td>
+                                            <td align="center"><a href="javascript:void(0)" onclick="addtocart(@item.id)" title="Thêm vào giỏ hàng"><i class="fa fa-2x fa-cart-arrow-down" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section jsFooter{
+    <script src="@Url.Content("~/Scripts/JSController/jf_sanpham.js")"></script>
+    <script type="text/javascript">
+        jQuery(function () {
+            $("input.quantity").change(function () {
+                var INP = $(this);
+                if (!$.isNumeric(INP.val()) || INP.val() <= 0) {
+                    INP.val(1);
+                }
+                else {
+                    INP.val(parseInt(INP.val()));
+                }
+            });
+        });
+    </script>
+}

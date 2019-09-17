@@ -1,0 +1,76 @@
+﻿@using Core_MVC.Models
+@model IEnumerable<JF_LaySanPhamTheoDonHang_Result>
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+@{ decimal tong = 0;}
+<section class="ftco-section">
+    @{Html.RenderAction("Banner", "System", new { title = "Đơn hàng" });}
+    <div class="container main-container" style="padding-bottom: 35px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                                @Html.Raw(TempData["AlertMessage"])
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="giohang">
+                                @if (Model != null)
+                                {
+                                    int i = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        i++;
+                                        tong += (decimal)item.thanhtien;
+                                        <tr>
+                                            <td align="center">@i</td>
+                                            <td>@item.tensanpham</td>
+                                            <td align="center">@item.loaisanpham</td>
+                                            <td align="right">@string.Format("{0:N0}", item.giatien)</td>
+                                            <td align="right">@item.soluong</td>
+                                            <td align="right">@string.Format("{0:N0}", item.thanhtien)</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="4"><b>Tổng:</b></td>
+                                        <td align="right"><b>@string.Format("{0:N0}", tong)</b></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="100%">Chưa có sản phẩm nào.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

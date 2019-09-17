@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA93EB44-060E-4752-9345-D6EF0ADDAE9B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CS.Portal.Core</RootNamespace>
+    <AssemblyName>CS.Portal.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\CS.Portal\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CS.Portal.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CS.Portal\bin\CS.Portal.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CS.Portal\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAO\CMS_Categories_DAO.cs" />
+    <Compile Include="DAO\CMS_News_DAO.cs" />
+    <Compile Include="DAO\CSF_Logs_DAO.cs" />
+    <Compile Include="DAO\CSF_Pages_DAO.cs" />
+    <Compile Include="DAO\CSF_PageRole_DAO.cs" />
+    <Compile Include="DAO\CSF_Partials_DAO.cs" />
+    <Compile Include="DAO\CSF_RoleFuntion_DAO.cs" />
+    <Compile Include="DAO\CSF_Funtions_DAO.cs" />
+    <Compile Include="DAO\CSF_Modules_DAO.cs" />
+    <Compile Include="DAO\CSF_Roles_DAO.cs" />
+    <Compile Include="DAO\CSF_UserRole_DAO.cs" />
+    <Compile Include="DAO\CSF_Users_DAO.cs" />
+    <Compile Include="EF\CMS_AdImages.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_AdImages_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_Categories.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_Categories_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_News.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_News_LayCongBoK0CongBo_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_News_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_News_LayTinBaiCongKhaiTheoCateKey_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_News_Status.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_Questions.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_Questions_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_TypeOfQuestion.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CMS_TypeOfQuestion_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Functions.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Functions_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Logs.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Logs_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Logs_TheoTieuChi_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Modules.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Modules_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_PagePartial.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_PageRole.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Pages.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Pages_GetPageByRoleID_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Pages_GetPartial_FrontEnd_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Pages_GetPartial_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Pages_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Partials.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Partials_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_RoleFunction.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_RoleFunction_LayTatCa_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Roles.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_UserRole.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_UserRole_GetByUser_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Users.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Users_CheckLogin_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Users_GetAll_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Users_GetUsersInGroup_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\CSF_Users_GetUsersNotInGroup_Result.cs">
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\CustomClass.cs" />
+    <Compile Include="EF\ModelCore.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCore.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ModelCore.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ModelCore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCore.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Metadatas\CMS_Categories_Metadata.cs" />
+    <Compile Include="Metadatas\CSF_Functions_Metadata.cs" />
+    <Compile Include="Metadatas\CMS_News_Metadata.cs" />
+    <Compile Include="Metadatas\CSF_Modules_Metadata.cs" />
+    <Compile Include="Metadatas\CSF_Pages_Metadata.cs" />
+    <Compile Include="Metadatas\CSF_Partials_Metadata.cs" />
+    <Compile Include="Metadatas\CSF_Users_Metadata.cs" />
+    <Compile Include="Metadatas\LoginModel_Metadata.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EF\ModelCore.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelCore.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="EF\ModelCore.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCore.edmx</DependentUpon>
+      <LastGenOutput>ModelCore.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EF\ModelCore.edmx.diagram">
+      <DependentUpon>ModelCore.edmx</DependentUpon>
+    </None>
+    <None Include="EF\ModelCore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCore.edmx</DependentUpon>
+      <LastGenOutput>ModelCore.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

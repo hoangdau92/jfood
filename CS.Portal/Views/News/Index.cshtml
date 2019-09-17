@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+
+@model PagedList.IPagedList<CS.Portal.Core.EF.CMS_News_LayTatCa_Result>
+@using PagedList.Mvc;
+@using CS.Portal.Common;
+
+<section class="ftco-section">
+    @{Html.RenderAction("Banner", "System", new { title = "Tin tức" });}
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-md-3 col-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-12 box-cate">
+                <h3 class="heading">@ViewBag.CATE</h3>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="row news-item">
+                            @if (item.PICTURE != null && item.PICTURE != "")
+                            {
+                                <div class="col-md-3 col-12">
+                                    <a title="@Model.FirstOrDefault().TITLE" href="@Utilities.UrlContent_2(@Model.FirstOrDefault().CateKey, @Model.FirstOrDefault().TITLE, @Model.FirstOrDefault().ID.ToString())">
+                                        <img src="@Utilities.SiteURL_Resources()@item.PICTURE" alt="anh tin bai" />
+                                    </a>
+                                </div>
+                                <div class="col-md-9 col-12">
+                                    <h4 class="title"><a title="@Model.FirstOrDefault().TITLE" href="@Utilities.UrlContent_2(@Model.FirstOrDefault().CateKey, @Model.FirstOrDefault().TITLE, @Model.FirstOrDefault().ID.ToString())">@item.TITLE</a></h4>
+                                    <p class="excerpt">@Html.Raw(Utilities.ReturnSubString(500, item.EXCERPT))</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12">
+                                    <div class="feature-news">
+                                        <h4 class="title">
+                                            <a title="@item.TITLE" href="@Utilities.UrlContent_2(@item.CateKey, @item.TITLE, @item.ID.ToString())"><i class="fa fa-circle" aria-hidden="true"></i> @item.TITLE</a>
+                                        </h4>
+                                        <p class="excerpt">@Html.Raw(Utilities.ReturnSubString(500, item.EXCERPT))</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-lg-12 text-right">
+                            <span>Tổng số: <b>@Model.TotalItemCount</b> bản ghi.</span>
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, q = ViewBag.q }))
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
+
+

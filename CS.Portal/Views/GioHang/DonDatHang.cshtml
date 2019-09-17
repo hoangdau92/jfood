@@ -1,0 +1,221 @@
+﻿@using Core_MVC.Models
+@model JF_DonHang
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+@{ decimal tong = 0;}
+<section class="ftco-section">
+    @{Html.RenderAction("Banner", "System", new { title = "Đơn hàng" });}
+    <div class="container main-container" style="padding-bottom: 35px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <h3 class="heading">Đơn hàng của bạn</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="giohang">
+                                @if (Session["cart"] != null)
+                                {
+                                    int i = 0;
+                                    List<ShoppingCart> lCart = (List<ShoppingCart>)Session["cart"];
+                                    foreach (var item in lCart)
+                                    {
+                                        i++;
+                                        decimal thanhtien = item.giatien * item.soluong;
+                                        tong += thanhtien;
+                                        <tr>
+                                            <td align="center">@i</td>
+                                            <td>@item.tensanpham</td>
+                                            <td align="center">@item.loaisanpham</td>
+                                            <td align="right">@string.Format("{0:N0}", item.giatien)</td>
+                                            <td align="right">@item.soluong</td>
+                                            <td align="right">@string.Format("{0:N0}", thanhtien)</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="4"><b>Tổng:</b></td>
+                                        <td align="right"><b>@string.Format("{0:N0}", tong)</b></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="100%">Chưa có sản phẩm nào.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (TempData["AlertMessage"] != null)
+                        {
+                            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                                @TempData["AlertMessage"]
+                            </div>
+                        }
+                    </div>
+                </div>
+                <h3 class="heading">Nhập thông tin đặt hàng</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("dondathang", "giohang", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.madonhang, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    <b>@ViewBag.MADONHANG</b>
+                                    <input type="hidden" name="madonhang" value="@ViewBag.MADONHANG" />
+                                    <input type="hidden" name="tongtien" value="@tong" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.tenkhachhang, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.tenkhachhang, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.tenkhachhang, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.diachi, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.diachi, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.diachi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.sodienthoai, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.sodienthoai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.sodienthoai, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.ngaygiaohang, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.ngaygiaohang, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ngaygiaohang, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.thoigiangiaohang, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.thoigiangiaohang, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.thoigiangiaohang, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.ghichukhachhang, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.ghichukhachhang, new { @class = "form-control", @rows = "3" })
+                                    @Html.ValidationMessageFor(model => model.ghichukhachhang, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.phuongthucthanhtoan, htmlAttributes: new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-9">
+                                    @if (TempData["htthanhtoan"] != null)
+                                    {
+                                        List<JF_HinhThucThanhToan> lData = (List<JF_HinhThucThanhToan>)TempData["htthanhtoan"];
+                                        for (int i = 0; i < lData.Count; i++)
+                                        {
+                                            if (i == 0)
+                                            {
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="phuongthucthanhtoan" value="@lData[i].id" checked>
+                                                        @lData[i].tieude
+                                                    </label>
+                                                    <span>@lData[i].mota</span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="phuongthucthanhtoan" value="@lData[i].id">
+                                                        @lData[i].tieude
+                                                    </label>
+                                                    <br />
+                                                    <span>@lData[i].mota</span>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Đặt hàng" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<link rel="stylesheet" href="@Url.Content("~/Content/CSSBase/bootstrap-datetimepicker.css")" />
+@section jsFooter{
+    <script src="@Url.Content("~/Scripts/JSController/jf_sanpham.js")"></script>
+    <script src="@Url.Content("~/Scripts/JSBase/moment.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/JSBase/bootstrap-datetimepicker.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery('#@Html.IdFor(model => model.ngaygiaohang)').datetimepicker({
+            format: 'DD/MM/YYYY '
+        });
+        //jQuery("input[data-val-date]").removeAttr("data-val-date");
+    </script>
+}
+
+<style>
+    .radio label{
+        cursor: pointer;
+    }
+</style>

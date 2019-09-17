@@ -1,0 +1,86 @@
+﻿@using Core_MVC.Models
+@model IEnumerable<Core_MVC.Models.JF_SanPham>
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+<section class="ftco-section">
+    @{Html.RenderAction("Banner", "System", new { title = "Đơn hàng" });}
+    <div class="container main-container" style="padding-bottom: 35px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <h3 class="heading">Giỏ hàng của bạn</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>---</th>
+                                </tr>
+                            </thead>
+                            <tbody id="giohang">
+                                @if (Session["cart"] != null)
+                                {
+                                    int i = 0;
+                                    decimal tong = 0;
+                                    List<ShoppingCart> lCart = (List<ShoppingCart>)Session["cart"];
+                                    foreach (var item in lCart)
+                                    {
+                                        i++;
+                                        decimal thanhtien = item.giatien * item.soluong;
+                                        tong += thanhtien;
+                                        <tr>
+                                            <td align="center">@i</td>
+                                            <td>@item.tensanpham</td>
+                                            <td align="center">@item.loaisanpham</td>
+                                            <td align="right">@string.Format("{0:N0}", item.giatien)</td>
+                                            <td align="right"><input type="number" id="@item.idsanpham"  value="@item.soluong" class="form-control quantity" data-current="@item.soluong"/></td>
+                                            <td align="right">@string.Format("{0:N0}", thanhtien)</td>
+                                            <td align="center"><a href="javascript:void(0)" onclick="removeProduct(@item.idsanpham)" title="Xóa khỏi giỏ hàng"><i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="4"><b>Tổng:</b></td>
+                                        <td align="right"><b>@string.Format("{0:N0}", tong)</b></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="100%">Chưa có sản phẩm nào.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-sm btn-info" href="@Url.Content("~/san-pham/tat-ca-san-pham")">Tiếp tục mua hàng</a>
+                        <a class="btn btn-sm btn-success pull-right" href="@Url.Content("~/gio-hang/dondathang")">Đặt hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section jsFooter{
+    <script src="@Url.Content("~/Scripts/JSController/jf_sanpham.js")"></script>
+    <script type="text/javascript">
+        jQuery(function () {
+            onchangeQuantity();
+        });
+    </script>
+}

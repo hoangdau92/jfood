@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CS.Portal.Core.EF.CMS_News_LayTinBaiCongKhaiTheoCateKey_Result>
+@using CS.Portal.Common;
+
+<div class="panel panel-default box-news">
+    <div class="panel-body">
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="row news-item">
+                    @if (item.PICTURE != null && item.PICTURE != "")
+                    {
+                        <div class="col-sm-4 col-12">
+                            <a title="@Model.FirstOrDefault().TITLE" href="@Utilities.UrlContent_2(@Model.FirstOrDefault().CateKey, @Model.FirstOrDefault().TITLE, @Model.FirstOrDefault().ID.ToString())">
+                                <img src="@Utilities.SiteURL_Resources()@item.PICTURE" alt="anh tin bai" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 col-12">
+                            <h4 class="title"><a title="@Model.FirstOrDefault().TITLE" href="@Utilities.UrlContent_2(@Model.FirstOrDefault().CateKey, @Model.FirstOrDefault().TITLE, @Model.FirstOrDefault().ID.ToString())">@item.TITLE</a></h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <h4 class="title">
+                                <a title="@item.TITLE" href="@Utilities.UrlContent_2(@item.CateKey, @item.TITLE, @item.ID.ToString())"><i class="fa fa-circle" aria-hidden="true"></i> @item.TITLE</a>
+                            </h4>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

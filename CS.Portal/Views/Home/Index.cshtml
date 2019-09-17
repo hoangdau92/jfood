@@ -1,0 +1,85 @@
+﻿@using CS.Portal.Common;
+@model IEnumerable<Core_MVC.Models.JF_SanPham>
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+
+@{Html.RenderAction("Slider", "Home");}
+
+<section class="ftco-section">
+    <div class="container" style="margin-bottom: 20px; padding-bottom: 15px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <h3 class="heading">Sản phẩm nổi bật</h3>
+                <div class="row list-product">
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            int tyle = Convert.ToInt32((item.giatruockm - item.giatien) * 100 / item.giatruockm);
+                            <div class="col-md-4 col-xs-6 ftco-animate">
+                                <div class="product">
+                                    <a href="javascript:void(0)" class="img-prod">
+                                        <img class="img-fluid img_@item.id" src="@Url.Content(ViewBag.URLIMAGE + item.hinhdaidien)" alt="image preview">
+                                        @if (item.giatruockm != item.giatien)
+                                        {
+                                            <span class="status">@tyle %</span>
+                                        }
+                                        <div class="overlay"></div>
+                                    </a>
+                                    <div class="text py-3 pb-4 px-3 text-center">
+                                        <h3><a href="javascript:void(0)" class="sanpham_@item.id">@item.ten</a></h3>
+                                        <div class="d-flex">
+                                            <div class="pricing">
+                                                @if (item.giatruockm == item.giatien)
+                                                {
+                                                    <p class="price"><span class="price-sale">@string.Format("{0:N0}", item.giatien) VNĐ</span></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="price"><span class="mr-2 price-dc">@string.Format("{0:N0}", item.giatruockm)</span><span class="price-sale">@string.Format("{0:N0}", item.giatien) VNĐ</span></p>
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="bottom-area d-flex px-3">
+                                            <div class="m-auto d-flex">
+                                                <a href="@Url.Content("~/san-pham/" + Utilities.RemoveUrlMarks(item.JF_LoaiSanPham.ten)+"-"+item.JF_LoaiSanPham.id)" title="Xem các sản phẩm cùng loại" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                    <span><i class="ion-ios-menu"></i></span>
+                                                </a>
+                                                <a href="javascript:void(0)" onclick="addtocart(@item.id)" title="Thêm vào giỏ hàng" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                    <span><i class="ion-ios-cart"></i></span>
+                                                </a>
+                                                <a href="javascript:void(0)" class="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i class="ion-ios-heart"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row jf-content-banner">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        @{Html.RenderAction("TinTrangChu", "News");}
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        @{Html.RenderAction("BaiTuVan", "News");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section jsFooter{
+    <script src="@Url.Content("~/Scripts/JSController/jf_sanpham.js")"></script>
+}

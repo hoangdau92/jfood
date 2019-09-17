@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hoangdau_foodjpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JF_DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="madonhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="tenkhachhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="sodienthoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaygiaohang" Type="datetime" />
+          <Property Name="thoigiangiaohang" Type="nvarchar" MaxLength="50" />
+          <Property Name="ghichukhachhang" Type="nvarchar" MaxLength="500" />
+          <Property Name="ngaydathang" Type="datetime" />
+          <Property Name="phuongthucthanhtoan" Type="int" />
+          <Property Name="tongtien" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="trangthai" Type="int" />
+          <Property Name="motaxuly" Type="nvarchar" MaxLength="500" />
+          <Property Name="kichhoat" Type="bit" />
+        </EntityType>
+        <EntityType Name="JF_DonViTinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="mota" Type="nvarchar" MaxLength="200" />
+          <Property Name="kichhoat" Type="bit" />
+        </EntityType>
+        <EntityType Name="JF_HinhThucThanhToan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="200" />
+          <Property Name="mota" Type="nvarchar" MaxLength="200" />
+          <Property Name="kichhoat" Type="bit" />
+        </EntityType>
+        <EntityType Name="JF_LoaiSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="thutu" Type="int" />
+          <Property Name="mota" Type="nvarchar" MaxLength="200" />
+          <Property Name="kichhoat" Type="bit" />
+        </EntityType>
+        <EntityType Name="JF_SanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="hinhdaidien" Type="nvarchar" MaxLength="200" />
+          <Property Name="id_donvitinh" Type="int" />
+          <Property Name="giatien" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="id_loaisanpham" Type="int" />
+          <Property Name="noibat" Type="bit" />
+          <Property Name="ngaycapnhat" Type="datetime" />
+          <Property Name="hientrangchu" Type="bit" />
+          <Property Name="mota" Type="nvarchar" MaxLength="200" />
+          <Property Name="kichhoat" Type="bit" />
+          <Property Name="giatruockm" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="JF_SanPham_DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_donhang" Type="int" />
+          <Property Name="id_sanpham" Type="int" />
+          <Property Name="soluong" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="giatien" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="thanhtien" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="kichhoat" Type="bit" />
+        </EntityType>
+        <EntityType Name="JF_Slider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tieudechinh" Type="nvarchar" MaxLength="100" />
+          <Property Name="tieudephu" Type="nvarchar" MaxLength="100" />
+          <Property Name="anhhienthi" Type="nvarchar" MaxLength="100" />
+          <Property Name="thutu" Type="int" />
+        </EntityType>
+        <EntityType Name="JF_ThongTinLienHe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="dienthoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoannganhang" Type="nvarchar" MaxLength="200" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoanbuudien" Type="nvarchar" MaxLength="200" />
+          <Property Name="slogan" Type="nvarchar" MaxLength="200" />
+          <Property Name="tencongty" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_JF_DonHang_JF_HinhThucThanhToan">
+          <End Role="JF_HinhThucThanhToan" Type="Self.JF_HinhThucThanhToan" Multiplicity="0..1" />
+          <End Role="JF_DonHang" Type="Self.JF_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_HinhThucThanhToan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_DonHang">
+              <PropertyRef Name="phuongthucthanhtoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_DonHang_JF_DonHang1">
+          <End Role="JF_DonHang" Type="Self.JF_DonHang" Multiplicity="0..1" />
+          <End Role="JF_SanPham_DonHang" Type="Self.JF_SanPham_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_DonHang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham_DonHang">
+              <PropertyRef Name="id_donhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_DonHang_JF_SanPham">
+          <End Role="JF_SanPham" Type="Self.JF_SanPham" Multiplicity="0..1" />
+          <End Role="JF_SanPham_DonHang" Type="Self.JF_SanPham_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_SanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham_DonHang">
+              <PropertyRef Name="id_sanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_JF_DonViTinh">
+          <End Role="JF_DonViTinh" Type="Self.JF_DonViTinh" Multiplicity="0..1" />
+          <End Role="JF_SanPham" Type="Self.JF_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_DonViTinh">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham">
+              <PropertyRef Name="id_donvitinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_JF_LoaiSanPham">
+          <End Role="JF_LoaiSanPham" Type="Self.JF_LoaiSanPham" Multiplicity="0..1" />
+          <End Role="JF_SanPham" Type="Self.JF_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_LoaiSanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham">
+              <PropertyRef Name="id_loaisanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="JF_LaySanPhamTheoDonHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iddonhang" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="hoangdau_foodjpModelStoreContainer">
+          <EntitySet Name="JF_DonHang" EntityType="Self.JF_DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_DonViTinh" EntityType="Self.JF_DonViTinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_HinhThucThanhToan" EntityType="Self.JF_HinhThucThanhToan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_LoaiSanPham" EntityType="Self.JF_LoaiSanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_SanPham" EntityType="Self.JF_SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_SanPham_DonHang" EntityType="Self.JF_SanPham_DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_Slider" EntityType="Self.JF_Slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JF_ThongTinLienHe" EntityType="Self.JF_ThongTinLienHe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JF_DonHang_JF_HinhThucThanhToan" Association="Self.FK_JF_DonHang_JF_HinhThucThanhToan">
+            <End Role="JF_HinhThucThanhToan" EntitySet="JF_HinhThucThanhToan" />
+            <End Role="JF_DonHang" EntitySet="JF_DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_DonHang_JF_DonHang1" Association="Self.FK_JF_SanPham_DonHang_JF_DonHang1">
+            <End Role="JF_DonHang" EntitySet="JF_DonHang" />
+            <End Role="JF_SanPham_DonHang" EntitySet="JF_SanPham_DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_DonHang_JF_SanPham" Association="Self.FK_JF_SanPham_DonHang_JF_SanPham">
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+            <End Role="JF_SanPham_DonHang" EntitySet="JF_SanPham_DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_JF_DonViTinh" Association="Self.FK_JF_SanPham_JF_DonViTinh">
+            <End Role="JF_DonViTinh" EntitySet="JF_DonViTinh" />
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_JF_LoaiSanPham" Association="Self.FK_JF_SanPham_JF_LoaiSanPham">
+            <End Role="JF_LoaiSanPham" EntitySet="JF_LoaiSanPham" />
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hoangdau_foodjpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="JF_DonViTinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <Property Name="mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JF_SanPham" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_JF_DonViTinh" FromRole="JF_DonViTinh" ToRole="JF_SanPham" />
+        </EntityType>
+        <EntityContainer Name="jFoodEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JF_DonViTinh" EntityType="Self.JF_DonViTinh" />
+          <EntitySet Name="JF_HinhThucThanhToan" EntityType="hoangdau_foodjpModel.JF_HinhThucThanhToan" />
+          <EntitySet Name="JF_DonHang" EntityType="hoangdau_foodjpModel.JF_DonHang" />
+          <AssociationSet Name="FK_JF_DonHang_JF_HinhThucThanhToan" Association="hoangdau_foodjpModel.FK_JF_DonHang_JF_HinhThucThanhToan">
+            <End Role="JF_HinhThucThanhToan" EntitySet="JF_HinhThucThanhToan" />
+            <End Role="JF_DonHang" EntitySet="JF_DonHang" />
+          </AssociationSet>
+          <EntitySet Name="JF_Slider" EntityType="hoangdau_foodjpModel.JF_Slider" />
+          <EntitySet Name="JF_SanPham_DonHang" EntityType="hoangdau_foodjpModel.JF_SanPham_DonHang" />
+          <AssociationSet Name="FK_JF_SanPham_DonHang_JF_DonHang1" Association="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_DonHang1">
+            <End Role="JF_DonHang" EntitySet="JF_DonHang" />
+            <End Role="JF_SanPham_DonHang" EntitySet="JF_SanPham_DonHang" />
+          </AssociationSet>
+          <EntitySet Name="JF_LoaiSanPham" EntityType="hoangdau_foodjpModel.JF_LoaiSanPham" />
+          <FunctionImport Name="JF_LaySanPhamTheoDonHang" ReturnType="Collection(hoangdau_foodjpModel.JF_LaySanPhamTheoDonHang_Result)">
+          <Parameter Name="iddonhang" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="JF_SanPham" EntityType="hoangdau_foodjpModel.JF_SanPham" />
+          <AssociationSet Name="FK_JF_SanPham_JF_DonViTinh" Association="hoangdau_foodjpModel.FK_JF_SanPham_JF_DonViTinh">
+            <End Role="JF_DonViTinh" EntitySet="JF_DonViTinh" />
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_JF_LoaiSanPham" Association="hoangdau_foodjpModel.FK_JF_SanPham_JF_LoaiSanPham">
+            <End Role="JF_LoaiSanPham" EntitySet="JF_LoaiSanPham" />
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JF_SanPham_DonHang_JF_SanPham" Association="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_SanPham">
+            <End Role="JF_SanPham" EntitySet="JF_SanPham" />
+            <End Role="JF_SanPham_DonHang" EntitySet="JF_SanPham_DonHang" />
+          </AssociationSet>
+          <EntitySet Name="JF_ThongTinLienHe" EntityType="hoangdau_foodjpModel.JF_ThongTinLienHe" />
+        </EntityContainer>
+        <EntityType Name="JF_HinhThucThanhToan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieude" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <NavigationProperty Name="JF_DonHang" Relationship="hoangdau_foodjpModel.FK_JF_DonHang_JF_HinhThucThanhToan" FromRole="JF_HinhThucThanhToan" ToRole="JF_DonHang" />
+        </EntityType>
+        <EntityType Name="JF_DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="madonhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tenkhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="sodienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaygiaohang" Type="DateTime" Precision="3" />
+          <Property Name="thoigiangiaohang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ghichukhachhang" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydathang" Type="DateTime" Precision="3" />
+          <Property Name="phuongthucthanhtoan" Type="Int32" />
+          <Property Name="tongtien" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="trangthai" Type="Int32" />
+          <Property Name="motaxuly" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <NavigationProperty Name="JF_HinhThucThanhToan" Relationship="hoangdau_foodjpModel.FK_JF_DonHang_JF_HinhThucThanhToan" FromRole="JF_DonHang" ToRole="JF_HinhThucThanhToan" />
+          <NavigationProperty Name="JF_SanPham_DonHang" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_DonHang1" FromRole="JF_DonHang" ToRole="JF_SanPham_DonHang" />
+        </EntityType>
+        <Association Name="FK_JF_DonHang_JF_HinhThucThanhToan">
+          <End Type="hoangdau_foodjpModel.JF_HinhThucThanhToan" Role="JF_HinhThucThanhToan" Multiplicity="0..1" />
+          <End Type="hoangdau_foodjpModel.JF_DonHang" Role="JF_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_HinhThucThanhToan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_DonHang">
+              <PropertyRef Name="phuongthucthanhtoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JF_Slider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tieudechinh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tieudephu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="anhhienthi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="thutu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="JF_SanPham_DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_donhang" Type="Int32" />
+          <Property Name="id_sanpham" Type="Int32" />
+          <Property Name="soluong" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="giatien" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="thanhtien" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <NavigationProperty Name="JF_DonHang" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_DonHang1" FromRole="JF_SanPham_DonHang" ToRole="JF_DonHang" />
+          <NavigationProperty Name="JF_SanPham" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_SanPham" FromRole="JF_SanPham_DonHang" ToRole="JF_SanPham" />
+        </EntityType>
+        <Association Name="FK_JF_SanPham_DonHang_JF_DonHang1">
+          <End Type="hoangdau_foodjpModel.JF_DonHang" Role="JF_DonHang" Multiplicity="0..1" />
+          <End Type="hoangdau_foodjpModel.JF_SanPham_DonHang" Role="JF_SanPham_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_DonHang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham_DonHang">
+              <PropertyRef Name="id_donhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JF_LoaiSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="thutu" Type="Int32" />
+          <Property Name="mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <NavigationProperty Name="JF_SanPham" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_JF_LoaiSanPham" FromRole="JF_LoaiSanPham" ToRole="JF_SanPham" />
+        </EntityType>
+        <ComplexType Name="JF_LaySanPhamTheoDonHang_Result">
+          <Property Type="String" Name="madonhang" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_donhang" Nullable="true" />
+          <Property Type="Int32" Name="id_sanpham" Nullable="true" />
+          <Property Type="Decimal" Name="soluong" Nullable="true" Precision="10" Scale="3" />
+          <Property Type="Decimal" Name="giatien" Nullable="true" Precision="10" Scale="0" />
+          <Property Type="Decimal" Name="thanhtien" Nullable="true" Precision="10" Scale="0" />
+          <Property Type="Boolean" Name="kichhoat" Nullable="true" />
+          <Property Type="String" Name="tensanpham" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="loaisanpham" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="donvitinh" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="JF_SanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hinhdaidien" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="id_donvitinh" Type="Int32" />
+          <Property Name="giatien" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="id_loaisanpham" Type="Int32" />
+          <Property Name="noibat" Type="Boolean" />
+          <Property Name="ngaycapnhat" Type="DateTime" Precision="3" />
+          <Property Name="hientrangchu" Type="Boolean" />
+          <Property Name="mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="kichhoat" Type="Boolean" />
+          <Property Name="giatruockm" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="JF_DonViTinh" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_JF_DonViTinh" FromRole="JF_SanPham" ToRole="JF_DonViTinh" />
+          <NavigationProperty Name="JF_LoaiSanPham" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_JF_LoaiSanPham" FromRole="JF_SanPham" ToRole="JF_LoaiSanPham" />
+          <NavigationProperty Name="JF_SanPham_DonHang" Relationship="hoangdau_foodjpModel.FK_JF_SanPham_DonHang_JF_SanPham" FromRole="JF_SanPham" ToRole="JF_SanPham_DonHang" />
+        </EntityType>
+        <Association Name="FK_JF_SanPham_JF_DonViTinh">
+          <End Type="hoangdau_foodjpModel.JF_DonViTinh" Role="JF_DonViTinh" Multiplicity="0..1" />
+          <End Type="hoangdau_foodjpModel.JF_SanPham" Role="JF_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_DonViTinh">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham">
+              <PropertyRef Name="id_donvitinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_JF_LoaiSanPham">
+          <End Type="hoangdau_foodjpModel.JF_LoaiSanPham" Role="JF_LoaiSanPham" Multiplicity="0..1" />
+          <End Type="hoangdau_foodjpModel.JF_SanPham" Role="JF_SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_LoaiSanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham">
+              <PropertyRef Name="id_loaisanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JF_SanPham_DonHang_JF_SanPham">
+          <End Type="hoangdau_foodjpModel.JF_SanPham" Role="JF_SanPham" Multiplicity="0..1" />
+          <End Type="hoangdau_foodjpModel.JF_SanPham_DonHang" Role="JF_SanPham_DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JF_SanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JF_SanPham_DonHang">
+              <PropertyRef Name="id_sanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JF_ThongTinLienHe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoannganhang" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoanbuudien" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="slogan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="tencongty" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hoangdau_foodjpModelStoreContainer" CdmEntityContainer="jFoodEntities">
+          <EntitySetMapping Name="JF_DonViTinh">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_DonViTinh">
+              <MappingFragment StoreEntitySet="JF_DonViTinh">
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_HinhThucThanhToan">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_HinhThucThanhToan">
+              <MappingFragment StoreEntitySet="JF_HinhThucThanhToan">
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_DonHang">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_DonHang">
+              <MappingFragment StoreEntitySet="JF_DonHang">
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="motaxuly" ColumnName="motaxuly" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="phuongthucthanhtoan" ColumnName="phuongthucthanhtoan" />
+                <ScalarProperty Name="ngaydathang" ColumnName="ngaydathang" />
+                <ScalarProperty Name="ghichukhachhang" ColumnName="ghichukhachhang" />
+                <ScalarProperty Name="thoigiangiaohang" ColumnName="thoigiangiaohang" />
+                <ScalarProperty Name="ngaygiaohang" ColumnName="ngaygiaohang" />
+                <ScalarProperty Name="sodienthoai" ColumnName="sodienthoai" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
+                <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_Slider">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_Slider">
+              <MappingFragment StoreEntitySet="JF_Slider">
+                <ScalarProperty Name="thutu" ColumnName="thutu" />
+                <ScalarProperty Name="anhhienthi" ColumnName="anhhienthi" />
+                <ScalarProperty Name="tieudephu" ColumnName="tieudephu" />
+                <ScalarProperty Name="tieudechinh" ColumnName="tieudechinh" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_SanPham_DonHang">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_SanPham_DonHang">
+              <MappingFragment StoreEntitySet="JF_SanPham_DonHang">
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="id_donhang" ColumnName="id_donhang" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_LoaiSanPham">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_LoaiSanPham">
+              <MappingFragment StoreEntitySet="JF_LoaiSanPham">
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="thutu" ColumnName="thutu" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="JF_LaySanPhamTheoDonHang" FunctionName="hoangdau_foodjpModel.Store.JF_LaySanPhamTheoDonHang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="hoangdau_foodjpModel.JF_LaySanPhamTheoDonHang_Result">
+                <ScalarProperty Name="madonhang" ColumnName="madonhang" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_donhang" ColumnName="id_donhang" />
+                <ScalarProperty Name="id_sanpham" ColumnName="id_sanpham" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="loaisanpham" ColumnName="loaisanpham" />
+                <ScalarProperty Name="donvitinh" ColumnName="donvitinh" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="JF_SanPham">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_SanPham">
+              <MappingFragment StoreEntitySet="JF_SanPham">
+                <ScalarProperty Name="giatruockm" ColumnName="giatruockm" />
+                <ScalarProperty Name="kichhoat" ColumnName="kichhoat" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="hientrangchu" ColumnName="hientrangchu" />
+                <ScalarProperty Name="ngaycapnhat" ColumnName="ngaycapnhat" />
+                <ScalarProperty Name="noibat" ColumnName="noibat" />
+                <ScalarProperty Name="id_loaisanpham" ColumnName="id_loaisanpham" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="id_donvitinh" ColumnName="id_donvitinh" />
+                <ScalarProperty Name="hinhdaidien" ColumnName="hinhdaidien" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JF_ThongTinLienHe">
+            <EntityTypeMapping TypeName="hoangdau_foodjpModel.JF_ThongTinLienHe">
+              <MappingFragment StoreEntitySet="JF_ThongTinLienHe">
+                <ScalarProperty Name="tencongty" ColumnName="tencongty" />
+                <ScalarProperty Name="slogan" ColumnName="slogan" />
+                <ScalarProperty Name="taikhoanbuudien" ColumnName="taikhoanbuudien" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="taikhoannganhang" ColumnName="taikhoannganhang" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="dienthoai" ColumnName="dienthoai" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

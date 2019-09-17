@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad14f2846bc149848aa864edc2caa444" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Functions" Width="1.5" PointX="11.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_PagePartial" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Pages" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_RoleFunction" Width="1.5" PointX="2.375" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Roles" Width="1.5" PointX="2.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_UserRole" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Users" Width="1.5" PointX="0.5" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_RoleFunction_CSF_Functions" ManuallyRouted="false" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_PagePartial_CSF_Pages" ManuallyRouted="false" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_RoleFunction_CSF_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_UserRole_CSF_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Partials" Width="1.5" PointX="12" PointY="1.875" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_PagePartial_CSF_Partials" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_PageRole" Width="1.5" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_PageRole_CSF_Pages" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_PageRole_CSF_Roles" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Modules" Width="1.5" PointX="9.75" PointY="0.5" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_Partials_CSF_Modules" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_UserRole_CSF_Users" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_Categories" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_News" Width="1.5" PointX="10" PointY="7" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_News_CSF_Categories" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_News_CSF_Users" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CSF_Logs" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_AdImages" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_News_Status" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_Questions" Width="1.5" PointX="10" PointY="12" />
+        <EntityTypeShape EntityType="CS.Portal.Core.CMS_TypeOfQuestion" Width="1.5" PointX="7.75" PointY="12.5" />
+        <AssociationConnector Association="CS.Portal.Core.FK_CSF_Questions_CSF_TypeOfQuestion" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+
+@model CS.Portal.Core.EF.CMS_News
+
+<section class="ftco-section">
+    @{Html.RenderAction("Banner", "System", new { title = "Tin tức" });}
+    <div class="container" style="padding-bottom: 35px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                @if (Model != null)
+                {
+                    <h3 class="heading">@Model.TITLE</h3>
+                    <div class="row news">
+                        <div class="col-md-12 news-excerpt">
+                            @Html.Raw(Model.EXCERPT)
+                        </div>
+                        <div class="col-md-12 news-content">
+                            @Html.Raw(Model.CONTENTS)
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+

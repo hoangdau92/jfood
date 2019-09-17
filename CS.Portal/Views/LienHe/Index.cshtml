@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_jfood.cshtml";
+}
+
+@model Core_MVC.Models.JF_ThongTinLienHe
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Featured Products</span>
+                <h2 class="mb-4">Our Products</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-bottom: 35px;">
+        <div class="row">
+            <div class="col-md-3 col-xs-12 ftco-animate">
+                @{Html.RenderAction("LoaiSanPham", "Home");}
+            </div>
+            <div class="col-md-9 col-xs-12">
+                @if (Model != null)
+                {
+                    <div class="panel panel-default box-newsdetail">
+                        <div class="panel-heading">
+                            abc
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 new-title">
+                                    <h4>@Model.ten</h4>
+                                </div>
+                                <div class="col-md-12 new-excerpt">
+                                    @Model.taikhoannganhang
+                                </div>
+                                <div class="col-md-12 new-content">
+                                    @Model.diachi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+</section>

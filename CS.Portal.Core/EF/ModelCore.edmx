@@ -1,0 +1,1798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CS.Portal.Core.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CMS_AdImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Publish" Type="bit" />
+          <Property Name="Orders" Type="int" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CMS_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="2000" />
+          <Property Name="PICTURE" Type="nvarchar" MaxLength="200" />
+          <Property Name="PUBLISH" Type="bit" Nullable="false" />
+          <Property Name="KEY" Type="varchar" MaxLength="100" />
+          <Property Name="ORDERS" Type="int" />
+          <Property Name="PARENTCATE" Type="int" />
+        </EntityType>
+        <EntityType Name="CMS_News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="3000" />
+          <Property Name="EXCERPT" Type="nvarchar(max)" />
+          <Property Name="CONTENTS" Type="ntext" />
+          <Property Name="PICTURE" Type="nvarchar" MaxLength="500" />
+          <Property Name="ID_USERCREATE" Type="int" />
+          <Property Name="CREATEDATE" Type="datetime" />
+          <Property Name="ID_CATEGORIES" Type="smallint" />
+          <Property Name="ID_NEWS_STATUS" Type="smallint" />
+          <Property Name="NUMBEROFVIEW" Type="int" />
+          <Property Name="ID_USERMODIFY" Type="int" />
+          <Property Name="EDITDATE" Type="datetime" />
+          <Property Name="ISFOCUS" Type="smallint" />
+        </EntityType>
+        <EntityType Name="CMS_News_Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMS_Questions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfQuestionID" Type="smallint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Contents" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Answer" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Publish" Type="bit" />
+          <Property Name="UserCreate" Type="int" />
+        </EntityType>
+        <EntityType Name="CMS_TypeOfQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CSF_Functions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Controller-Action" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CSF_Logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Controller-Action" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Content" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CSF_Modules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CSF_PagePartial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" Nullable="false" />
+          <Property Name="PartialID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="Row" Type="int" />
+          <Property Name="Order" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IsBox" Type="bit" />
+          <Property Name="BoxParent" Type="int" />
+        </EntityType>
+        <EntityType Name="CSF_PageRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSF_Pages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Order" Type="int" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsBlank" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ModuleID" Type="int" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsHost" Type="bit" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CSF_Partials">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="UserCreate" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CSF_RoleFunction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="FunctionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSF_Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSF_UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSF_Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="ActiveCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="ActiveDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_CSF_News_CSF_Categories">
+          <End Role="CMS_Categories" Type="Self.CMS_Categories" Multiplicity="0..1" />
+          <End Role="CMS_News" Type="Self.CMS_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMS_News">
+              <PropertyRef Name="ID_CATEGORIES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PagePartial_CSF_Pages">
+          <End Role="CSF_Pages" Type="Self.CSF_Pages" Multiplicity="1" />
+          <End Role="CSF_PagePartial" Type="Self.CSF_PagePartial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PagePartial">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PagePartial_CSF_Partials">
+          <End Role="CSF_Partials" Type="Self.CSF_Partials" Multiplicity="1" />
+          <End Role="CSF_PagePartial" Type="Self.CSF_PagePartial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Partials">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PagePartial">
+              <PropertyRef Name="PartialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PageRole_CSF_Pages">
+          <End Role="CSF_Pages" Type="Self.CSF_Pages" Multiplicity="1" />
+          <End Role="CSF_PageRole" Type="Self.CSF_PageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PageRole">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PageRole_CSF_Roles">
+          <End Role="CSF_Roles" Type="Self.CSF_Roles" Multiplicity="1" />
+          <End Role="CSF_PageRole" Type="Self.CSF_PageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PageRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_Partials_CSF_Modules">
+          <End Role="CSF_Modules" Type="Self.CSF_Modules" Multiplicity="1" />
+          <End Role="CSF_Partials" Type="Self.CSF_Partials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Modules">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_Partials">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_Questions_CSF_TypeOfQuestion">
+          <End Role="CMS_TypeOfQuestion" Type="Self.CMS_TypeOfQuestion" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CMS_Questions" Type="Self.CMS_Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_TypeOfQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMS_Questions">
+              <PropertyRef Name="TypeOfQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_RoleFunction_CSF_Functions">
+          <End Role="CSF_Functions" Type="Self.CSF_Functions" Multiplicity="1" />
+          <End Role="CSF_RoleFunction" Type="Self.CSF_RoleFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Functions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_RoleFunction">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_RoleFunction_CSF_Roles">
+          <End Role="CSF_Roles" Type="Self.CSF_Roles" Multiplicity="1" />
+          <End Role="CSF_RoleFunction" Type="Self.CSF_RoleFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_RoleFunction">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_UserRole_CSF_Roles">
+          <End Role="CSF_Roles" Type="Self.CSF_Roles" Multiplicity="1" />
+          <End Role="CSF_UserRole" Type="Self.CSF_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_UserRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_UserRole_CSF_Users">
+          <End Role="CSF_Users" Type="Self.CSF_Users" Multiplicity="1" />
+          <End Role="CSF_UserRole" Type="Self.CSF_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CMS_AdImages_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CMS_Categories_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CMS_News_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CATEGORIESID" Type="int" Mode="In" />
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="NEWS_STATUS_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CMS_News_LayTinBaiCongKhaiTheoCateKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CateKey" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CMS_Questions_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TypeOfQuestionID" Type="int" Mode="In" />
+          <Parameter Name="KeyWord" Type="nvarchar" Mode="In" />
+          <Parameter Name="Publish" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CMS_TypeOfQuestion_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Functions_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CSF_Logs_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Logs_TheoTieuChi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+          <Parameter Name="pFromDate" Type="varchar" Mode="In" />
+          <Parameter Name="pToDate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Modules_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_PageRole_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+          <Parameter Name="value" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="isadmin" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CSF_Pages_CopyPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageNguon" Type="int" Mode="In" />
+          <Parameter Name="PageDich" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CSF_Pages_GetPageByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Pages_GetPartial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="key" Type="nvarchar" Mode="In" />
+          <Parameter Name="active" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="CSF_Pages_GetPartial_FrontEnd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="key" Type="nvarchar" Mode="In" />
+          <Parameter Name="active" Type="smallint" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="idGuestGroup" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CSF_Pages_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CSF_Partials_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CSF_Role_Function_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+          <Parameter Name="value" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CSF_RoleFunction_LayTatCa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CSF_UserRole_DelByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CSF_UserRole_GetByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CSF_UserRole_RemoveUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+          <Parameter Name="listUserID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Users_CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CSF_Users_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CSF_Users_GetUsersInGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CSF_Users_GetUsersNotInGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CSPortalCoreStoreContainer">
+          <EntitySet Name="CMS_AdImages" EntityType="Self.CMS_AdImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Categories" EntityType="Self.CMS_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_News" EntityType="Self.CMS_News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_News_Status" EntityType="Self.CMS_News_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_Questions" EntityType="Self.CMS_Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMS_TypeOfQuestion" EntityType="Self.CMS_TypeOfQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Functions" EntityType="Self.CSF_Functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Logs" EntityType="Self.CSF_Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Modules" EntityType="Self.CSF_Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_PagePartial" EntityType="Self.CSF_PagePartial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_PageRole" EntityType="Self.CSF_PageRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Pages" EntityType="Self.CSF_Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Partials" EntityType="Self.CSF_Partials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_RoleFunction" EntityType="Self.CSF_RoleFunction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Roles" EntityType="Self.CSF_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_UserRole" EntityType="Self.CSF_UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSF_Users" EntityType="Self.CSF_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CSF_News_CSF_Categories" Association="Self.FK_CSF_News_CSF_Categories">
+            <End Role="CMS_Categories" EntitySet="CMS_Categories" />
+            <End Role="CMS_News" EntitySet="CMS_News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PagePartial_CSF_Pages" Association="Self.FK_CSF_PagePartial_CSF_Pages">
+            <End Role="CSF_Pages" EntitySet="CSF_Pages" />
+            <End Role="CSF_PagePartial" EntitySet="CSF_PagePartial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PagePartial_CSF_Partials" Association="Self.FK_CSF_PagePartial_CSF_Partials">
+            <End Role="CSF_Partials" EntitySet="CSF_Partials" />
+            <End Role="CSF_PagePartial" EntitySet="CSF_PagePartial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PageRole_CSF_Pages" Association="Self.FK_CSF_PageRole_CSF_Pages">
+            <End Role="CSF_Pages" EntitySet="CSF_Pages" />
+            <End Role="CSF_PageRole" EntitySet="CSF_PageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PageRole_CSF_Roles" Association="Self.FK_CSF_PageRole_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_PageRole" EntitySet="CSF_PageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_Partials_CSF_Modules" Association="Self.FK_CSF_Partials_CSF_Modules">
+            <End Role="CSF_Modules" EntitySet="CSF_Modules" />
+            <End Role="CSF_Partials" EntitySet="CSF_Partials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_Questions_CSF_TypeOfQuestion" Association="Self.FK_CSF_Questions_CSF_TypeOfQuestion">
+            <End Role="CMS_TypeOfQuestion" EntitySet="CMS_TypeOfQuestion" />
+            <End Role="CMS_Questions" EntitySet="CMS_Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_RoleFunction_CSF_Functions" Association="Self.FK_CSF_RoleFunction_CSF_Functions">
+            <End Role="CSF_Functions" EntitySet="CSF_Functions" />
+            <End Role="CSF_RoleFunction" EntitySet="CSF_RoleFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_RoleFunction_CSF_Roles" Association="Self.FK_CSF_RoleFunction_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_RoleFunction" EntitySet="CSF_RoleFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_UserRole_CSF_Roles" Association="Self.FK_CSF_UserRole_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_UserRole" EntitySet="CSF_UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_UserRole_CSF_Users" Association="Self.FK_CSF_UserRole_CSF_Users">
+            <End Role="CSF_Users" EntitySet="CSF_Users" />
+            <End Role="CSF_UserRole" EntitySet="CSF_UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CS.Portal.Core" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CSF_Functions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="Controller_Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CSF_RoleFunction" Relationship="Self.FK_CSF_RoleFunction_CSF_Functions" FromRole="CSF_Functions" ToRole="CSF_RoleFunction" />
+        </EntityType>
+        <EntityType Name="CSF_PagePartial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" Nullable="false" />
+          <Property Name="PartialID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CSF_Pages" Relationship="Self.FK_CSF_PagePartial_CSF_Pages" FromRole="CSF_PagePartial" ToRole="CSF_Pages" />
+          <Property Name="Row" Type="Int32" />
+          <NavigationProperty Name="CSF_Partials" Relationship="CS.Portal.Core.FK_CSF_PagePartial_CSF_Partials" FromRole="CSF_PagePartial" ToRole="CSF_Partials" />
+          <Property Name="IsBox" Type="Boolean" />
+          <Property Name="BoxParent" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CSF_Pages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="IsBlank" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ModuleID" Type="Int32" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsHost" Type="Boolean" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CSF_PagePartial" Relationship="Self.FK_CSF_PagePartial_CSF_Pages" FromRole="CSF_Pages" ToRole="CSF_PagePartial" />
+          <NavigationProperty Name="CSF_PageRole" Relationship="CS.Portal.Core.FK_CSF_PageRole_CSF_Pages" FromRole="CSF_Pages" ToRole="CSF_PageRole" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CSF_RoleFunction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="FunctionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CSF_Functions" Relationship="Self.FK_CSF_RoleFunction_CSF_Functions" FromRole="CSF_RoleFunction" ToRole="CSF_Functions" />
+          <NavigationProperty Name="CSF_Roles" Relationship="Self.FK_CSF_RoleFunction_CSF_Roles" FromRole="CSF_RoleFunction" ToRole="CSF_Roles" />
+        </EntityType>
+        <EntityType Name="CSF_Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CSF_RoleFunction" Relationship="Self.FK_CSF_RoleFunction_CSF_Roles" FromRole="CSF_Roles" ToRole="CSF_RoleFunction" />
+          <NavigationProperty Name="CSF_UserRole" Relationship="Self.FK_CSF_UserRole_CSF_Roles" FromRole="CSF_Roles" ToRole="CSF_UserRole" />
+          <NavigationProperty Name="CSF_PageRole" Relationship="CS.Portal.Core.FK_CSF_PageRole_CSF_Roles" FromRole="CSF_Roles" ToRole="CSF_PageRole" />
+        </EntityType>
+        <EntityType Name="CSF_UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CSF_Roles" Relationship="Self.FK_CSF_UserRole_CSF_Roles" FromRole="CSF_UserRole" ToRole="CSF_Roles" />
+          <NavigationProperty Name="CSF_Users" Relationship="CS.Portal.Core.FK_CSF_UserRole_CSF_Users" FromRole="CSF_UserRole" ToRole="CSF_Users" />
+        </EntityType>
+        <Association Name="FK_CSF_RoleFunction_CSF_Functions">
+          <End Role="CSF_Functions" Type="Self.CSF_Functions" Multiplicity="1" />
+          <End Role="CSF_RoleFunction" Type="Self.CSF_RoleFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Functions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_RoleFunction">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PagePartial_CSF_Pages">
+          <End Role="CSF_Pages" Type="Self.CSF_Pages" Multiplicity="1" />
+          <End Role="CSF_PagePartial" Type="Self.CSF_PagePartial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PagePartial">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_RoleFunction_CSF_Roles">
+          <End Role="CSF_Roles" Type="Self.CSF_Roles" Multiplicity="1" />
+          <End Role="CSF_RoleFunction" Type="Self.CSF_RoleFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_RoleFunction">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_UserRole_CSF_Roles">
+          <End Role="CSF_Roles" Type="Self.CSF_Roles" Multiplicity="1" />
+          <End Role="CSF_UserRole" Type="Self.CSF_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_UserRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CSF_MVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CSF_Functions" EntityType="Self.CSF_Functions" />
+          <EntitySet Name="CSF_PagePartial" EntityType="Self.CSF_PagePartial" />
+          <EntitySet Name="CSF_Pages" EntityType="Self.CSF_Pages" />
+          <EntitySet Name="CSF_RoleFunction" EntityType="Self.CSF_RoleFunction" />
+          <EntitySet Name="CSF_Roles" EntityType="Self.CSF_Roles" />
+          <EntitySet Name="CSF_UserRole" EntityType="Self.CSF_UserRole" />
+          <AssociationSet Name="FK_CSF_RoleFunction_CSF_Functions" Association="Self.FK_CSF_RoleFunction_CSF_Functions">
+            <End Role="CSF_Functions" EntitySet="CSF_Functions" />
+            <End Role="CSF_RoleFunction" EntitySet="CSF_RoleFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PagePartial_CSF_Pages" Association="Self.FK_CSF_PagePartial_CSF_Pages">
+            <End Role="CSF_Pages" EntitySet="CSF_Pages" />
+            <End Role="CSF_PagePartial" EntitySet="CSF_PagePartial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_RoleFunction_CSF_Roles" Association="Self.FK_CSF_RoleFunction_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_RoleFunction" EntitySet="CSF_RoleFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_UserRole_CSF_Roles" Association="Self.FK_CSF_UserRole_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_UserRole" EntitySet="CSF_UserRole" />
+          </AssociationSet>
+          <FunctionImport Name="CSF_UserRole_DelByUser">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_UserRole_GetByUser" ReturnType="Collection(CS.Portal.Core.CSF_UserRole_GetByUser_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Users_CheckLogin" ReturnType="Collection(CS.Portal.Core.CSF_Users_CheckLogin_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Users_GetAll" ReturnType="Collection(CS.Portal.Core.CSF_Users_GetAll_Result)" >
+          </FunctionImport>
+          <FunctionImport Name="CSF_Users_GetUsersNotInGroup" ReturnType="Collection(CS.Portal.Core.CSF_Users_GetUsersNotInGroup_Result)">
+          <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Users_GetUsersInGroup" ReturnType="Collection(CS.Portal.Core.CSF_Users_GetUsersInGroup_Result)">
+          <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_UserRole_RemoveUser">
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="listUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Functions_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_Functions_LayTatCa_Result)" />
+          <FunctionImport Name="CSF_RoleFunction_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_RoleFunction_LayTatCa_Result)" />
+          <FunctionImport Name="CSF_Pages_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_Pages_LayTatCa_Result)" />
+          <FunctionImport Name="CSF_Pages_GetPartial" ReturnType="Collection(CS.Portal.Core.CSF_Pages_GetPartial_Result)">
+            <Parameter Name="key" Mode="In" Type="String" />
+            <Parameter Name="active" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <EntitySet Name="CSF_Partials" EntityType="CS.Portal.Core.CSF_Partials" />
+          <AssociationSet Name="FK_CSF_PagePartial_CSF_Partials" Association="CS.Portal.Core.FK_CSF_PagePartial_CSF_Partials">
+            <End Role="CSF_Partials" EntitySet="CSF_Partials" />
+            <End Role="CSF_PagePartial" EntitySet="CSF_PagePartial" />
+          </AssociationSet>
+          <FunctionImport Name="CSF_Role_Function_Add">
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_PageRole_Add">
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="value" Mode="In" Type="String" />
+            <Parameter Name="isadmin" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="CSF_PageRole" EntityType="CS.Portal.Core.CSF_PageRole" />
+          <AssociationSet Name="FK_CSF_PageRole_CSF_Pages" Association="CS.Portal.Core.FK_CSF_PageRole_CSF_Pages">
+            <End Role="CSF_Pages" EntitySet="CSF_Pages" />
+            <End Role="CSF_PageRole" EntitySet="CSF_PageRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_PageRole_CSF_Roles" Association="CS.Portal.Core.FK_CSF_PageRole_CSF_Roles">
+            <End Role="CSF_Roles" EntitySet="CSF_Roles" />
+            <End Role="CSF_PageRole" EntitySet="CSF_PageRole" />
+          </AssociationSet>
+          <FunctionImport Name="CSF_Partials_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_Partials_LayTatCa_Result)" />
+          <FunctionImport Name="CSF_Pages_GetPageByRoleID" ReturnType="Collection(CS.Portal.Core.CSF_Pages_GetPageByRoleID_Result)">
+          <Parameter Name="RoleID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CSF_Modules" EntityType="CS.Portal.Core.CSF_Modules" />
+          <AssociationSet Name="FK_CSF_Partials_CSF_Modules" Association="CS.Portal.Core.FK_CSF_Partials_CSF_Modules">
+            <End Role="CSF_Modules" EntitySet="CSF_Modules" />
+            <End Role="CSF_Partials" EntitySet="CSF_Partials" />
+          </AssociationSet>
+          <EntitySet Name="CSF_Users" EntityType="CS.Portal.Core.CSF_Users" />
+          <AssociationSet Name="FK_CSF_UserRole_CSF_Users" Association="CS.Portal.Core.FK_CSF_UserRole_CSF_Users">
+            <End Role="CSF_Users" EntitySet="CSF_Users" />
+            <End Role="CSF_UserRole" EntitySet="CSF_UserRole" />
+          </AssociationSet>
+          <EntitySet Name="CMS_Categories" EntityType="CS.Portal.Core.CMS_Categories" />
+          <EntitySet Name="CMS_News" EntityType="CS.Portal.Core.CMS_News" />
+          <AssociationSet Name="FK_CSF_News_CSF_Categories" Association="CS.Portal.Core.FK_CSF_News_CSF_Categories">
+            <End Role="CMS_Categories" EntitySet="CMS_Categories" />
+            <End Role="CMS_News" EntitySet="CMS_News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CSF_News_CSF_Users" Association="CS.Portal.Core.FK_CSF_News_CSF_Users">
+            <End Role="CSF_Users" EntitySet="CSF_Users" />
+            <End Role="CMS_News" EntitySet="CMS_News" />
+          </AssociationSet>
+          <FunctionImport Name="CMS_Categories_LayTatCa" ReturnType="Collection(CS.Portal.Core.CMS_Categories_LayTatCa_Result)" />
+          <FunctionImport Name="CMS_News_LayTatCa" ReturnType="Collection(CS.Portal.Core.CMS_News_LayTatCa_Result)">
+            <Parameter Name="CATEGORIESID" Mode="In" Type="Int32" />
+            <Parameter Name="keyword" Mode="In" Type="String" />
+            <Parameter Name="NEWS_STATUS_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CMS_News_LayCongBoK0CongBo" ReturnType="Collection(CS.Portal.Core.CMS_News_LayCongBoK0CongBo_Result)">
+            <Parameter Name="CATEGORIESID" Mode="In" Type="Int32" />
+            <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Pages_GetPartial_FrontEnd" ReturnType="Collection(CS.Portal.Core.CSF_Pages_GetPartial_FrontEnd_Result)">
+            <Parameter Name="key" Mode="In" Type="String" />
+            <Parameter Name="active" Mode="In" Type="Int16" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idGuestGroup" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Pages_CopyPage">
+            <Parameter Name="PageNguon" Mode="In" Type="Int32" />
+            <Parameter Name="PageDich" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CMS_News_LayTopTinBaiCongKhaiTheoCateKey">
+            <Parameter Name="Top" Mode="In" Type="Int32" />
+            <Parameter Name="CateKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Modules_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_Modules_LayTatCa_Result)">
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CSF_Logs" EntityType="CS.Portal.Core.CSF_Logs" />
+          <FunctionImport Name="CSF_Logs_LayTatCa" ReturnType="Collection(CS.Portal.Core.CSF_Logs_LayTatCa_Result)">
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CSF_Logs_TheoTieuChi" ReturnType="Collection(CS.Portal.Core.CSF_Logs_TheoTieuChi_Result)">
+            <Parameter Name="keyword" Mode="In" Type="String" />
+            <Parameter Name="pFromDate" Mode="In" Type="String" />
+            <Parameter Name="pToDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CMS_AdImages" EntityType="CS.Portal.Core.CMS_AdImages" />
+          <EntitySet Name="CMS_News_Status" EntityType="CS.Portal.Core.CMS_News_Status" />
+          <EntitySet Name="CMS_Questions" EntityType="CS.Portal.Core.CMS_Questions" />
+          <EntitySet Name="CMS_TypeOfQuestion" EntityType="CS.Portal.Core.CMS_TypeOfQuestion" />
+          <AssociationSet Name="FK_CSF_Questions_CSF_TypeOfQuestion" Association="CS.Portal.Core.FK_CSF_Questions_CSF_TypeOfQuestion">
+            <End Role="CMS_TypeOfQuestion" EntitySet="CMS_TypeOfQuestion" />
+            <End Role="CMS_Questions" EntitySet="CMS_Questions" />
+          </AssociationSet>
+          <FunctionImport Name="CMS_AdImages_LayTatCa" ReturnType="Collection(CS.Portal.Core.CMS_AdImages_LayTatCa_Result)">
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CMS_Questions_LayTatCa" ReturnType="Collection(CS.Portal.Core.CMS_Questions_LayTatCa_Result)">
+            <Parameter Name="TypeOfQuestionID" Mode="In" Type="Int32" />
+            <Parameter Name="KeyWord" Mode="In" Type="String" />
+            <Parameter Name="Publish" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CMS_TypeOfQuestion_LayTatCa" ReturnType="Collection(CS.Portal.Core.CMS_TypeOfQuestion_LayTatCa_Result)">
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CMS_News_LayTinBaiCongKhaiTheoCateKey" ReturnType="Collection(CS.Portal.Core.CMS_News_LayTinBaiCongKhaiTheoCateKey_Result)">
+            <Parameter Name="CateKey" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="CSF_UserRole_GetByUser_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CSF_Users_CheckLogin_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CSF_Users_GetAll_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="20" />
+          <Property Type="Int16" Name="Status" Nullable="true" />
+          <Property Type="String" Name="ActiveCode" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="RegisterDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ActiveDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="CSF_Users_GetUsersNotInGroup_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CSF_Users_GetUsersInGroup_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CSF_Functions_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Controller_Action" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TenModule" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChucNangCha" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="CSF_RoleFunction_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="Int32" Name="FunctionID" Nullable="false" />
+          <Property Type="String" Name="TenChucNang" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenNhom" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="CSF_Pages_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Key" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Boolean" Name="IsBlank" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="ModuleID" Nullable="true" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsHost" Nullable="true" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PageCha" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenModule" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Icon" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CSF_Pages_GetPartial_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="PageID" Nullable="false" />
+          <Property Type="Int32" Name="PartialID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Row" Nullable="true" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Key" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Controller" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PartialName" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsBox" Nullable="true" />
+          <Property Type="Int32" Name="BoxParent" Nullable="true" />
+          <Property Type="String" Name="CA" Nullable="true" MaxLength="301" />
+        </ComplexType>
+        <EntityType Name="CSF_Partials">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Controller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CSF_PagePartial" Relationship="CS.Portal.Core.FK_CSF_PagePartial_CSF_Partials" FromRole="CSF_Partials" ToRole="CSF_PagePartial" />
+          <NavigationProperty Name="CSF_Modules" Relationship="CS.Portal.Core.FK_CSF_Partials_CSF_Modules" FromRole="CSF_Partials" ToRole="CSF_Modules" />
+        </EntityType>
+        <Association Name="FK_CSF_PagePartial_CSF_Partials">
+          <End Type="CS.Portal.Core.CSF_Partials" Role="CSF_Partials" Multiplicity="1" />
+          <End Type="CS.Portal.Core.CSF_PagePartial" Role="CSF_PagePartial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Partials">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PagePartial">
+              <PropertyRef Name="PartialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CSF_PageRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CSF_Pages" Relationship="CS.Portal.Core.FK_CSF_PageRole_CSF_Pages" FromRole="CSF_PageRole" ToRole="CSF_Pages" />
+          <NavigationProperty Name="CSF_Roles" Relationship="CS.Portal.Core.FK_CSF_PageRole_CSF_Roles" FromRole="CSF_PageRole" ToRole="CSF_Roles" />
+        </EntityType>
+        <Association Name="FK_CSF_PageRole_CSF_Pages">
+          <End Type="CS.Portal.Core.CSF_Pages" Role="CSF_Pages" Multiplicity="1" />
+          <End Type="CS.Portal.Core.CSF_PageRole" Role="CSF_PageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PageRole">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_PageRole_CSF_Roles">
+          <End Type="CS.Portal.Core.CSF_Roles" Role="CSF_Roles" Multiplicity="1" />
+          <End Type="CS.Portal.Core.CSF_PageRole" Role="CSF_PageRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_PageRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="CSF_Partials_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Key" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Controller" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenModule" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="CSF_Pages_GetPageByRoleID_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="key" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="parentid" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="CSF_Modules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CSF_Partials" Relationship="CS.Portal.Core.FK_CSF_Partials_CSF_Modules" FromRole="CSF_Modules" ToRole="CSF_Partials" />
+        </EntityType>
+        <Association Name="FK_CSF_Partials_CSF_Modules">
+          <End Type="CS.Portal.Core.CSF_Modules" Role="CSF_Modules" Multiplicity="1" />
+          <End Type="CS.Portal.Core.CSF_Partials" Role="CSF_Partials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Modules">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_Partials">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CSF_Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="ActiveCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="3" />
+          <Property Name="ActiveDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CSF_UserRole" Relationship="CS.Portal.Core.FK_CSF_UserRole_CSF_Users" FromRole="CSF_Users" ToRole="CSF_UserRole" />
+          <NavigationProperty Name="CMS_News" Relationship="CS.Portal.Core.FK_CSF_News_CSF_Users" FromRole="CSF_Users" ToRole="CMS_News" />
+        </EntityType>
+        <Association Name="FK_CSF_UserRole_CSF_Users">
+          <End Type="CS.Portal.Core.CSF_Users" Role="CSF_Users" Multiplicity="1" />
+          <End Type="CS.Portal.Core.CSF_UserRole" Role="CSF_UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CSF_UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CMS_Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="PICTURE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PUBLISH" Type="Boolean" Nullable="false" />
+          <Property Name="KEY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERS" Type="Int32" />
+          <Property Name="PARENTCATE" Type="Int32" />
+          <NavigationProperty Name="CMS_News" Relationship="CS.Portal.Core.FK_CSF_News_CSF_Categories" FromRole="CMS_Categories" ToRole="CMS_News" />
+        </EntityType>
+        <EntityType Name="CMS_News">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="EXCERPT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CONTENTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PICTURE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ID_USERCREATE" Type="Int32" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="ID_CATEGORIES" Type="Int16" />
+          <Property Name="ID_NEWS_STATUS" Type="Int16" />
+          <Property Name="NUMBEROFVIEW" Type="Int32" />
+          <Property Name="ID_USERMODIFY" Type="Int32" />
+          <Property Name="EDITDATE" Type="DateTime" Precision="3" />
+          <Property Name="ISFOCUS" Type="Int16" />
+          <NavigationProperty Name="CMS_Categories" Relationship="CS.Portal.Core.FK_CSF_News_CSF_Categories" FromRole="CMS_News" ToRole="CMS_Categories" />
+          <NavigationProperty Name="CSF_Users" Relationship="CS.Portal.Core.FK_CSF_News_CSF_Users" FromRole="CMS_News" ToRole="CSF_Users" />
+        </EntityType>
+        <Association Name="FK_CSF_News_CSF_Categories">
+          <End Type="CS.Portal.Core.CMS_Categories" Role="CMS_Categories" Multiplicity="0..1" />
+          <End Type="CS.Portal.Core.CMS_News" Role="CMS_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMS_News">
+              <PropertyRef Name="ID_CATEGORIES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CSF_News_CSF_Users">
+          <End Type="CS.Portal.Core.CSF_Users" Role="CSF_Users" Multiplicity="0..1" />
+          <End Type="CS.Portal.Core.CMS_News" Role="CMS_News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CSF_Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMS_News">
+              <PropertyRef Name="ID_USERCREATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="CMS_News_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="EXCERPT" Nullable="true" />
+          <Property Type="String" Name="TITLE" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="CONTENTS" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CREATEDATE" Nullable="true" Precision="23" />
+          <Property Type="Int16" Name="ID_CATEGORIES" Nullable="true" />
+          <Property Type="Int16" Name="ID_NEWS_STATUS" Nullable="true" />
+          <Property Type="Int16" Name="ISFOCUS" Nullable="true" />
+          <Property Type="Int32" Name="NUMBEROFVIEW" Nullable="true" />
+          <Property Type="String" Name="LoaiTinTuc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PICTURE" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CateKey" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CMS_News_LayCongBoK0CongBo_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="EXCERPT" Nullable="true" />
+          <Property Type="String" Name="TITLE" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="CONTENTS" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CREATEDATE" Nullable="true" Precision="23" />
+          <Property Type="Int16" Name="ID_CATEGORIES" Nullable="true" />
+          <Property Type="Int16" Name="ID_NEWS_STATUS" Nullable="true" />
+          <Property Type="Int16" Name="ISFOCUS" Nullable="true" />
+          <Property Type="Int32" Name="NUMBEROFVIEW" Nullable="true" />
+          <Property Type="String" Name="LoaiTinTuc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="CSF_Pages_GetPartial_FrontEnd_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="PageID" Nullable="false" />
+          <Property Type="Int32" Name="PartialID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Row" Nullable="true" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Key" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Controller" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PartialName" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsBox" Nullable="true" />
+          <Property Type="Int32" Name="BoxParent" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CSF_Modules_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <EntityType Name="CSF_Logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Controller_Action" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="CSF_Logs_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Controller_Action" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Content" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CSF_Logs_TheoTieuChi_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Controller_Action" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Content" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="CMS_AdImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Publish" Type="Boolean" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserCreate" Type="Int32" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMS_News_Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMS_Questions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfQuestionID" Type="Int16" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Publish" Type="Boolean" />
+          <Property Name="UserCreate" Type="Int32" />
+          <NavigationProperty Name="CMS_TypeOfQuestion" Relationship="CS.Portal.Core.FK_CSF_Questions_CSF_TypeOfQuestion" FromRole="CMS_Questions" ToRole="CMS_TypeOfQuestion" />
+        </EntityType>
+        <EntityType Name="CMS_TypeOfQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMS_Questions" Relationship="CS.Portal.Core.FK_CSF_Questions_CSF_TypeOfQuestion" FromRole="CMS_TypeOfQuestion" ToRole="CMS_Questions" />
+        </EntityType>
+        <Association Name="FK_CSF_Questions_CSF_TypeOfQuestion">
+          <End Type="CS.Portal.Core.CMS_TypeOfQuestion" Role="CMS_TypeOfQuestion" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CS.Portal.Core.CMS_Questions" Role="CMS_Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_TypeOfQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CMS_Questions">
+              <PropertyRef Name="TypeOfQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="CMS_AdImages_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Publish" Nullable="true" />
+          <Property Type="Int32" Name="Orders" Nullable="true" />
+          <Property Type="String" Name="FileName" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Location" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CMS_Questions_LayTatCa_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int16" Name="TypeOfQuestionID" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Contents" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FileName" Nullable="true" MaxLength="1000" />
+          <Property Type="Boolean" Name="Publish" Nullable="true" />
+          <Property Type="Int32" Name="UserCreate" Nullable="true" />
+          <Property Type="String" Name="LoaiCauHoi" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="CMS_TypeOfQuestion_LayTatCa_Result">
+          <Property Type="Int16" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="CMS_Categories_LayTatCa_Result">
+          <Property Type="Int16" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="PICTURE" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="PUBLISH" Nullable="false" />
+          <Property Type="String" Name="KEY" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ORDERS" Nullable="true" />
+          <Property Type="Int32" Name="PARENTCATE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CMS_News_LayTinBaiCongKhaiTheoCateKey_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="EXCERPT" Nullable="true" />
+          <Property Type="String" Name="TITLE" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="CONTENTS" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="CREATEDATE" Nullable="true" Precision="23" />
+          <Property Type="Int16" Name="ID_CATEGORIES" Nullable="true" />
+          <Property Type="String" Name="PICTURE" Nullable="true" MaxLength="500" />
+          <Property Type="Int16" Name="ISFOCUS" Nullable="true" />
+          <Property Type="String" Name="LoaiTinTuc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CateKey" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSPortalCoreStoreContainer" CdmEntityContainer="CSF_MVCEntities">
+          <EntitySetMapping Name="CSF_Functions">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Functions">
+              <MappingFragment StoreEntitySet="CSF_Functions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Controller_Action" ColumnName="Controller-Action" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_PagePartial">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_PagePartial">
+              <MappingFragment StoreEntitySet="CSF_PagePartial">
+                <ScalarProperty Name="BoxParent" ColumnName="BoxParent" />
+                <ScalarProperty Name="IsBox" ColumnName="IsBox" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="PartialID" ColumnName="PartialID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_Pages">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Pages">
+              <MappingFragment StoreEntitySet="CSF_Pages">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsBlank" ColumnName="IsBlank" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsHost" ColumnName="IsHost" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_RoleFunction">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_RoleFunction">
+              <MappingFragment StoreEntitySet="CSF_RoleFunction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_Roles">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Roles">
+              <MappingFragment StoreEntitySet="CSF_Roles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_UserRole">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_UserRole">
+              <MappingFragment StoreEntitySet="CSF_UserRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CSF_UserRole_DelByUser" FunctionName="CS.Portal.Core.Store.CSF_UserRole_DelByUser" />
+          <FunctionImportMapping FunctionImportName="CSF_UserRole_GetByUser" FunctionName="CS.Portal.Core.Store.CSF_UserRole_GetByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_UserRole_GetByUser_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Users_CheckLogin" FunctionName="CS.Portal.Core.Store.CSF_Users_CheckLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Users_CheckLogin_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Users_GetAll" FunctionName="CS.Portal.Core.Store.CSF_Users_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Users_GetAll_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Users_GetUsersNotInGroup" FunctionName="CS.Portal.Core.Store.CSF_Users_GetUsersNotInGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Users_GetUsersNotInGroup_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Users_GetUsersInGroup" FunctionName="CS.Portal.Core.Store.CSF_Users_GetUsersInGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Users_GetUsersInGroup_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_UserRole_RemoveUser" FunctionName="CS.Portal.Core.Store.CSF_UserRole_RemoveUser" />
+          <FunctionImportMapping FunctionImportName="CSF_Functions_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_Functions_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Functions_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Controller_Action" ColumnName="Controller-Action" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="TenModule" ColumnName="TenModule" />
+                <ScalarProperty Name="ChucNangCha" ColumnName="ChucNangCha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_RoleFunction_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_RoleFunction_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_RoleFunction_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
+                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Pages_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_Pages_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Pages_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsBlank" ColumnName="IsBlank" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsHost" ColumnName="IsHost" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="PageCha" ColumnName="PageCha" />
+                <ScalarProperty Name="TenModule" ColumnName="TenModule" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Pages_GetPartial" FunctionName="CS.Portal.Core.Store.CSF_Pages_GetPartial">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Pages_GetPartial_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="PartialID" ColumnName="PartialID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="PartialName" ColumnName="PartialName" />
+                <ScalarProperty Name="IsBox" ColumnName="IsBox" />
+                <ScalarProperty Name="BoxParent" ColumnName="BoxParent" />
+                <ScalarProperty Name="CA" ColumnName="CA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CSF_Partials">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Partials">
+              <MappingFragment StoreEntitySet="CSF_Partials">
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Role_Function_Add" FunctionName="CS.Portal.Core.Store.CSF_Role_Function_Add" />
+          <FunctionImportMapping FunctionImportName="CSF_PageRole_Add" FunctionName="CS.Portal.Core.Store.CSF_PageRole_Add" />
+          <EntitySetMapping Name="CSF_PageRole">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_PageRole">
+              <MappingFragment StoreEntitySet="CSF_PageRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Partials_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_Partials_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Partials_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="TenModule" ColumnName="TenModule" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Pages_GetPageByRoleID" FunctionName="CS.Portal.Core.Store.CSF_Pages_GetPageByRoleID" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Pages_GetPageByRoleID_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CSF_Modules">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Modules">
+              <MappingFragment StoreEntitySet="CSF_Modules">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSF_Users">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Users">
+              <MappingFragment StoreEntitySet="CSF_Users">
+                <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Categories">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_Categories">
+              <MappingFragment StoreEntitySet="CMS_Categories">
+                <ScalarProperty Name="PARENTCATE" ColumnName="PARENTCATE" />
+                <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                <ScalarProperty Name="KEY" ColumnName="KEY" />
+                <ScalarProperty Name="PUBLISH" ColumnName="PUBLISH" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_News">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_News">
+              <MappingFragment StoreEntitySet="CMS_News">
+                <ScalarProperty Name="ISFOCUS" ColumnName="ISFOCUS" />
+                <ScalarProperty Name="EDITDATE" ColumnName="EDITDATE" />
+                <ScalarProperty Name="ID_USERMODIFY" ColumnName="ID_USERMODIFY" />
+                <ScalarProperty Name="NUMBEROFVIEW" ColumnName="NUMBEROFVIEW" />
+                <ScalarProperty Name="ID_NEWS_STATUS" ColumnName="ID_NEWS_STATUS" />
+                <ScalarProperty Name="ID_CATEGORIES" ColumnName="ID_CATEGORIES" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="ID_USERCREATE" ColumnName="ID_USERCREATE" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="CONTENTS" ColumnName="CONTENTS" />
+                <ScalarProperty Name="EXCERPT" ColumnName="EXCERPT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CMS_Categories_LayTatCa" FunctionName="CS.Portal.Core.Store.CMS_Categories_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_Categories_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="PUBLISH" ColumnName="PUBLISH" />
+                <ScalarProperty Name="KEY" ColumnName="KEY" />
+                <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                <ScalarProperty Name="PARENTCATE" ColumnName="PARENTCATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CMS_News_LayTatCa" FunctionName="CS.Portal.Core.Store.CMS_News_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_News_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EXCERPT" ColumnName="EXCERPT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="CONTENTS" ColumnName="CONTENTS" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="ID_CATEGORIES" ColumnName="ID_CATEGORIES" />
+                <ScalarProperty Name="ID_NEWS_STATUS" ColumnName="ID_NEWS_STATUS" />
+                <ScalarProperty Name="ISFOCUS" ColumnName="ISFOCUS" />
+                <ScalarProperty Name="NUMBEROFVIEW" ColumnName="NUMBEROFVIEW" />
+                <ScalarProperty Name="LoaiTinTuc" ColumnName="LoaiTinTuc" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="CateKey" ColumnName="CateKey" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Pages_GetPartial_FrontEnd" FunctionName="CS.Portal.Core.Store.CSF_Pages_GetPartial_FrontEnd">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Pages_GetPartial_FrontEnd_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="PartialID" ColumnName="PartialID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="PartialName" ColumnName="PartialName" />
+                <ScalarProperty Name="IsBox" ColumnName="IsBox" />
+                <ScalarProperty Name="BoxParent" ColumnName="BoxParent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Pages_CopyPage" FunctionName="CS.Portal.Core.Store.CSF_Pages_CopyPage" />
+          <FunctionImportMapping FunctionImportName="CSF_Modules_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_Modules_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Modules_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CSF_Logs">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CSF_Logs">
+              <MappingFragment StoreEntitySet="CSF_Logs">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="Controller_Action" ColumnName="Controller-Action" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Logs_LayTatCa" FunctionName="CS.Portal.Core.Store.CSF_Logs_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Logs_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Controller_Action" ColumnName="Controller-Action" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CSF_Logs_TheoTieuChi" FunctionName="CS.Portal.Core.Store.CSF_Logs_TheoTieuChi" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CSF_Logs_TheoTieuChi_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Controller_Action" ColumnName="Controller-Action" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CMS_AdImages">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_AdImages">
+              <MappingFragment StoreEntitySet="CMS_AdImages">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_News_Status">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_News_Status">
+              <MappingFragment StoreEntitySet="CMS_News_Status">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_Questions">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_Questions">
+              <MappingFragment StoreEntitySet="CMS_Questions">
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TypeOfQuestionID" ColumnName="TypeOfQuestionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_TypeOfQuestion">
+            <EntityTypeMapping TypeName="CS.Portal.Core.CMS_TypeOfQuestion">
+              <MappingFragment StoreEntitySet="CMS_TypeOfQuestion">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CMS_AdImages_LayTatCa" FunctionName="CS.Portal.Core.Store.CMS_AdImages_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_AdImages_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CMS_Questions_LayTatCa" FunctionName="CS.Portal.Core.Store.CMS_Questions_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_Questions_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TypeOfQuestionID" ColumnName="TypeOfQuestionID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Publish" ColumnName="Publish" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="LoaiCauHoi" ColumnName="LoaiCauHoi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CMS_TypeOfQuestion_LayTatCa" FunctionName="CS.Portal.Core.Store.CMS_TypeOfQuestion_LayTatCa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_TypeOfQuestion_LayTatCa_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CMS_News_LayTinBaiCongKhaiTheoCateKey" FunctionName="CS.Portal.Core.Store.CMS_News_LayTinBaiCongKhaiTheoCateKey">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CS.Portal.Core.CMS_News_LayTinBaiCongKhaiTheoCateKey_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EXCERPT" ColumnName="EXCERPT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="CONTENTS" ColumnName="CONTENTS" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="ID_CATEGORIES" ColumnName="ID_CATEGORIES" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="ISFOCUS" ColumnName="ISFOCUS" />
+                <ScalarProperty Name="LoaiTinTuc" ColumnName="LoaiTinTuc" />
+                <ScalarProperty Name="CateKey" ColumnName="CateKey" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
